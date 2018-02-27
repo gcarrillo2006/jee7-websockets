@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>#{i18nLogin.title}</title>
+	<h:outputStylesheet library="css" name="app.css" />
+	<h:outputScript library="js" name="app.js" />
+</h:head>
+<body>
+	<center>
+		<h:form>
+			<p:panel columns="1" style="text-align: center;" header="#{i18nLogin.credentials}">
+				<h:graphicImage library="img" name="iconoUsuario36x36.png" />
+				<center>
+					<p:panelGrid columns="2">
+						<p:outputLabel value="#{i18nLogin.user}" />
+						<p:inputText value="#{loginBean.username}" minlength="4" maxlength="25" required="true"
+							requiredMessage="Usuario requerido"/>
+						<p:outputLabel value="#{i18nLogin.password}" />
+						<h:inputSecret value="#{loginBean.password}" minlength="4" maxlength="25" required="true"
+							requiredMessage="Clave requerida">
+							<f:validateRegex pattern="[A-Z]{1}[a-z|A-Z]*[0-9]*" />
+						</h:inputSecret>
+						<f:facet name="footer">
+							<div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+								<center>
+									<p:commandButton action="#{loginBean.login()}"
+										value="#{i18nLogin.login}" />
+									<p:commandButton action="#{loginBean.inscription()}" value="#{i18nLogin.inscription}" immediate="true"/>
+								</center>
+							</div>
+						</f:facet>
+					</p:panelGrid>
+				</center>
+				<br />
+				<br />
+				<p:messages style="color: red;" />
+				<!--p:commandLink action="index.shop" value="#{i18nLogin.back}" /-->
+			</p:panel>
+		</h:form>
+	</center>
+</body>
+</html>

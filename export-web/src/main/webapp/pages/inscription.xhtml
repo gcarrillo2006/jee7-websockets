@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>#{i18nInscription.title}</title>
+		<h:outputStylesheet library="css" name="app.css"/>
+		<h:outputScript library="js" name="app.js"/>
+	</h:head>
+	<body>
+		<h:form>	
+			<p:growl id="growl" sticky="true" showDetail="true"/>
+			<p:wizard flowListener="#{inscriptionBean.onFlowProcess}">
+				<p:tab id="inscription" title="#{i18nInscription.title}">
+					<p:panel header="#{i18nInscription.inscriptionInformation}">
+						<p:messages />
+						<p:panelGrid columns="2">
+							<h:outputText value="#{i18nInscription.firstName}"/>
+							<p:inputText value="#{inscriptionBean.inscription.firstName}" required="true" label="#{i18nInscription.firstName}"/>
+							<h:outputText value="#{i18nInscription.lastName}"/>
+							<p:inputText value="#{inscriptionBean.inscription.lastName}" required="true" label="#{i18nInscription.lastName}"/>
+							<h:outputText value="#{i18nInscription.birthDate}"/>
+							<p:calendar value="#{inscriptionBean.inscription.birthDate}" required="true" label="#{i18nInscription.birthDate}"/>
+							<h:outputText value="#{i18nInscription.gender}"/>
+							<p:selectOneListbox value="#{inscriptionBean.inscription.gender}" required="true">
+								<f:selectItems value="#{inscriptionBean.genderItems}"/>
+							</p:selectOneListbox>
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="login" title="#{i18nLogin.title}">
+					<p:panel header="#{i18nLogin.loginInformation}">
+						<p:messages />
+						<p:panelGrid columns="2">
+							<h:outputText value="#{i18nLogin.user}"/>
+							<p:inputText value="#{inscriptionBean.login.username}" required="true" label="#{i18nLogin.user}"/>
+							<h:outputText value="#{i18nLogin.password}"/>
+							<p:inputMask value="#{inscriptionBean.login.password}" required="true" label="#{i18nLogin.password}"/>
+						</p:panelGrid>
+					</p:panel>
+				</p:tab>
+				<p:tab id="review" title="#{i18nInscription.review}">
+					<p:panel>
+						<p:panelGrid columns="2">
+							<h:outputText value="#{i18nInscription.firstName}"/>
+							<h:outputText value="#{inscriptionBean.inscription.firstName}"/>
+							<h:outputText value="#{i18nInscription.lastName}"/>
+							<h:outputText value="#{inscriptionBean.inscription.lastName}"/>
+							<h:outputText value="#{i18nLogin.user}"/>
+							<h:outputText value="#{inscriptionBean.login.username}"/>
+						</p:panelGrid>
+						<p:commandButton value="#{i18nInscription.save}" action="#{inscriptionBean.save}" update="growl" process="@this"/>
+					</p:panel>
+				</p:tab>
+			</p:wizard>
+		</h:form>
+	</body>
+</html>

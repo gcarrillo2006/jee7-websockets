@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf144829808643510" configfile="/export-web/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf144830123438911" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf144830123438912 pf144830123438913 pf144830123438914" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="secured/inscription.xhtml" id="pf144830123438915" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf144830123438916" inlinks="pf144830123438912" path="/secured/inscription.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/inscription.xhtml" id="pf144830123438917" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf144830123438913 pf144830123438916" path="/pages/inscription.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="secured/product.xhtml" id="pf144830123438918" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf144830123438914" path="/secured/product.xhtml"/>
+  <links id="pf144830123438912" target="pf144830123438915" source="pf144830123438911"/>
+  <links id="pf144830123438913" target="pf144830123438917" source="pf144830123438911"/>
+  <links id="pf144830123438914" target="pf144830123438918" source="pf144830123438911"/>
+  <links id="pf144830123438916" target="pf144830123438917" source="pf144830123438915"/>
+</pageflow:Pageflow>

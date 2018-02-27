@@ -1,2 +1,2 @@
 # jee7-websockets
-backend components
+backend components for websockets

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+<h:head>
+	<title>Error 404 - Recurso no encontrado</title>
+	<h:outputStylesheet library="css" name="app.css"/>
+	<h:outputScript library="js" name="app.js"/>
+</h:head> 
+<body> 
+	<h:panelGrid columns="1">
+		<f:facet name="header">
+			<h:outputLabel value="Error 404 - Recurso no encontrado" />
+		</f:facet>
+		<h:graphicImage library="img" name="404.png" />
+		<h:outputLabel value="Recurso no encontrado verifique lo siguiente: " />
+		<ul>
+			<li>Que la dirección sea la correcta</li>
+			<li>Exista una conexión de red adecuada</li>
+		</ul>
+		<h:commandLink action="index.shop" value="Regresar" />
+	</h:panelGrid>
+</body> 
+</html>

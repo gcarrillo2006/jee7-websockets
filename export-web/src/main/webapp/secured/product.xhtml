@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+	<body>
+		<h:form id="frmPro">
+			<p:remoteCommand name="updateStock" update=":frmPro:datPro"/>
+			<p:growl id="growl" sticky="true" showDetail="true"/>
+			<p:panel>
+				<p:dataTable id="datPro" value="#{productBean.productFullList}"
+					var="product">
+					<p:column headerText="Nombre del Producto">
+						<p:outputLabel value="#{product.key.name}" />
+					</p:column>
+					<p:column headerText="Precio del Producto">
+						<p:outputLabel value="#{product.key.price}" />
+					</p:column>
+					<p:column headerText="Stock del Producto">
+						<p:outputLabel value="#{product.value}" />
+					</p:column>
+					<p:column headerText="Seleccionar">
+						<p:commandButton value="seleccionar"
+							actionListener="#{productBean.asignProduct(product.key)}"
+							process="@this" update=":frmPro:panGriPro" />
+					</p:column>
+				</p:dataTable>
+				<p:fieldset legend="Datos Producto">
+					<p:panelGrid id="panGriPro" columns="2">
+						<p:outputLabel value="Código:" />
+						<p:inputText value="#{productBean.product.id}" readonly="true" />
+						<p:outputLabel value="Stock:" />
+						<p:inputText value="#{productBean.stock}" readonly="true" />
+						<p:outputLabel value="Nombre:" />
+						<p:inputText value="#{productBean.product.name}" readonly="true" />
+						<p:outputLabel value="Precio:" />
+						<p:spinner value="#{productBean.product.price}" readonly="true" />
+						<p:outputLabel value="Cantidad:" />
+						<p:spinner value="#{productBean.stockRequest}" />
+					</p:panelGrid>
+					<br />
+					<p:commandButton value="Agregar" icon="ui-icon-plus"
+						process="@this :frmPro:panGriPro"
+						actionListener="#{productBean.addProduct}"
+						update=":frmPro:datTabPro :frmPro:panGriPro :frmPro:growl" />
+				</p:fieldset>
+				<br />
+				<br />
+				<p:dataTable id="datTabPro" value="#{productBean.productList}"
+					var="productBag">
+					<p:column headerText="Nombre del Producto">
+						<p:outputLabel value="#{productBag.key.name}" />
+					</p:column>
+					<p:column headerText="Cantidad Seleccionada de Producto">
+						<p:outputLabel value="#{productBag.value}" />
+					</p:column>
+					<p:column headerText="Disminuir Seleccion">
+						<p:commandButton value="Disminuir seleccion"
+							actionListener="#{productBean.removeProduct(productBag.key)}"
+							update=":frmPro:datTabPro :frmPro:panGriPro :frmPro:growl" />
+					</p:column>
+				</p:dataTable>
+				<br />
+				<br />
+			</p:panel>
+		</h:form>
+	</body>
+</html>

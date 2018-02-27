@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>#{i18nInscription.title}</title>
+		<h:outputStylesheet library="css" name="app.css"/>
+		<h:outputScript library="js" name="app.js"/>
+	</h:head>
+	<body>
+		<h:form>
+			<p:dataTable var="inscription" value="#{inscriptionBean.inscriptionList}">
+				<p:column headerText="#{i18nInscription.firstName}">
+					<p:outputLabel value="#{inscription.firstName}"/>
+				</p:column>
+				<p:column headerText="#{i18nInscription.lastName}">
+					<p:outputLabel value="#{inscription.firstName}"/>
+				</p:column>
+				<p:column headerText="#{i18nInscription.gender}">
+					<p:outputLabel value="#{inscription.gender}"/>
+				</p:column>
+				<p:column headerText="#{i18nInscription.birthDate}">
+					<p:outputLabel value="#{inscription.birthDate}"/>
+				</p:column>
+			</p:dataTable>
+			<p:commandButton value="#{i18nInscription.inscription}" action="inscription"/>
+		</h:form>
+	</body>
+</html>

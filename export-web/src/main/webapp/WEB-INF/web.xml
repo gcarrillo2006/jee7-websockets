@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>ExportWeb</display-name>
+  
+  <!-- Listado de archivos de bienvenida -->
+  <welcome-file-list>
+    <welcome-file>login.shop</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Configuracion Tema primefaces -->
+  <context-param>
+  	<param-name>primefaces.THEME</param-name>
+  	<param-value>bluesky</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.shop</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Manejo de Seguridades -->
+  <security-constraint>
+    <display-name>Secured</display-name>
+    <web-resource-collection>
+      <web-resource-name>private</web-resource-name>
+        <description>Secured web pages</description>
+        <url-pattern>/restful/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>Authentication Needed</description>
+        <role-name>admin</role-name>
+        <role-name>buyer</role-name>
+        <role-name>seller</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  
+  <!-- Manejo de autenticación -->
+  <login-config>
+      <auth-method>KEYCLOAK</auth-method>
+      <realm-name>export-security</realm-name>
+  </login-config>
+  
+  <!-- Listado de Roles -->
+  <security-role>
+      <description>Application Manager</description>
+      <role-name>admin</role-name>
+  </security-role>
+  <security-role>
+      <description>Registered Buyer</description>
+      <role-name>buyer</role-name>
+  </security-role>
+  <security-role>
+  	  <description>Export Enterprise</description>
+      <role-name>seller</role-name>
+  </security-role>
+    
+  <!-- Configuración de errores -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/404.shop</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error/500.shop</location>
+  </error-page>
+  <error-page>
+	<exception-type>java.lang.Exception</exception-type>
+  	<location>/error/500.shop</location>
+  </error-page>
+</web-app>
